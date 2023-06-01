@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33712.159
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autolote", "Autolote\Autolote.csproj", "{C6F21442-19BC-4826-98E5-0AF54F0BC7B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoloteInfo", "AutoloteInfo\AutoloteInfo.csproj", "{5D3F24EA-BDF3-4208-BCF4-E723AED2A975}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C6F21442-19BC-4826-98E5-0AF54F0BC7B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6F21442-19BC-4826-98E5-0AF54F0BC7B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6F21442-19BC-4826-98E5-0AF54F0BC7B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6F21442-19BC-4826-98E5-0AF54F0BC7B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D3F24EA-BDF3-4208-BCF4-E723AED2A975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D3F24EA-BDF3-4208-BCF4-E723AED2A975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D3F24EA-BDF3-4208-BCF4-E723AED2A975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D3F24EA-BDF3-4208-BCF4-E723AED2A975}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6B45B73-4D76-4DB6-B754-ABA3983730E0}
+	EndGlobalSection
+EndGlobal
