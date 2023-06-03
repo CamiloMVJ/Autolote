@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Autolote.Models.DTO
 {
-    public class CarroDTO
+    public class VehiculoDTO
     {
 
         public int CarroId { get; set; }
@@ -11,10 +11,11 @@ namespace Autolote.Models.DTO
 
         public string Marca { get; set; }
         public decimal Precio { get; set; }
+        public string Estado { get; set; }
+        public int AñoFab { get; set; }
+        public int Stock { get; set; }
+        public string Color { get; set; }
 
-        public override string ToString()
-        {
-            return String.Format("Id: {0}\tMarca: {1}\tPrecio: {2}", CarroId,Marca,Precio);
-        }
+
     }
 }
