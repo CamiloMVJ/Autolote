@@ -20,32 +20,75 @@ namespace Autolote.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        //[Route("GetCarros")]
+        [HttpGet("Lista/{Tipo}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IEnumerable<CarroDTO>>> GetCarros()
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> GetLista(string Tipo)
         {
-            _logger.LogInformation("Solicitando lista de carros");
-            return Ok(await _db.Carros.ToListAsync());
+            _logger.LogInformation("Solicitando lista de " + Tipo);
+            switch (Tipo.ToLower())
+            {
+                case "vehiculo":
+                    return Ok(await _db.Vehiculos.ToListAsync());
+                case "cliente":
+                    return Ok(await _db.Clientes.ToListAsync());
+                default:
+                    return BadRequest();
+            }
         }
 
-        [HttpPost("InsertarCliente/{Nombre}")]
+        [HttpGet]
+        [Route("RegistroCredito")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> GetRegistrosCredito()
+        {
+            _logger.LogInformation("Solicitando lista de registro creditos");
+            return Ok(await _db.RegistrosCredito.ToListAsync());
+        }
+
+        [HttpGet]
+        [Route("RegistroContado")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> GetRegistrosContado()
+        {
+            _logger.LogInformation("Solicitando lista de registro contado");
+            return Ok(await _db.RegistrosContado.ToListAsync());
+        }
+
+        [HttpPost]
+        [Route("AgregarCliente")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
 
-        public ActionResult PostCliente(string Nombre)
+        public async Task<ActionResult> PostCliente([FromBody] ClienteDTO cliente)
         {
-            if (Nombre == "" || Nombre == null)
+            if (!ModelState.IsValid)
             {
                 _logger.LogError("Nombre no valido");
                 return BadRequest();
             }
 
-            _db.Clientes.Add(new Models.Cliente()
+            if (await _db.Clientes.FindAsync(cliente.CedulaId) != null)
             {
-                ClienteNombre = Nombre
+                ModelState.AddModelError("Nombre Existe", "!La cedula ingresada ya existe en nuesta base de datos¡");
+                return BadRequest(ModelState);
+            }
+            if (cliente == null)
+                return BadRequest(cliente);
+
+            _db.Clientes.Add(new Cliente()
+            {
+                NombreCliente = cliente.NombreCliente,
+                CedulaId = cliente.CedulaId,
+                Direccion = cliente.Direccion,
+                NumeroTelfono = cliente.NumeroTelfono,
+                Email = cliente.Email
             });
             _db.SaveChanges();
             _logger.LogInformation("Cliente creado con exito");
@@ -64,7 +107,7 @@ namespace Autolote.Controllers
                 return BadRequest();
             }
 
-            _db.Carros.Add(new Models.Carro()
+            _db.Vehiculos.Add(new Models.Vehiculo()
             {
                 Marca = Marca,
                 Precio = Precio
@@ -83,16 +126,16 @@ namespace Autolote.Controllers
         {
             try
             {
-                var carro = _db.Carros.Find(IdCarro);
+                var carro = _db.Vehiculos.Find(IdCarro);
                 var cliente = _db.Clientes.Find(IdCliente);
                 if (carro == null || cliente == null || CantidadDePagos == 0)
                 {
                     _logger.LogError("Error en la solicitud");
                     return NotFound();
                 }
-                var registro = new Registro(cliente, carro);
+                var registro = new RegistroCredito(cliente, carro);
                 registro.CalcularCouta(CantidadDePagos);
-                _db.Registros.Add(registro);
+                _db.RegistrosCredito.Add(registro);
                 _db.SaveChanges();
                 _logger.LogInformation("Registro creado con exito");
                 return Ok();
