@@ -3617,11 +3617,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\GP\\Desktop\\APIAutoLote\\AutoloteAPI\\AutoloteInfo\\AutoloteInfo.csproj",
+      "projectUniqueName": "C:\\Users\\GP\\Source\\Repos\\Autolote\\AutoloteInfo\\AutoloteInfo.csproj",
       "projectName": "AutoloteInfo",
-      "projectPath": "C:\\Users\\GP\\Desktop\\APIAutoLote\\AutoloteAPI\\AutoloteInfo\\AutoloteInfo.csproj",
+      "projectPath": "C:\\Users\\GP\\Source\\Repos\\Autolote\\AutoloteInfo\\AutoloteInfo.csproj",
       "packagesPath": "C:\\Users\\GP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\GP\\Desktop\\APIAutoLote\\AutoloteAPI\\AutoloteInfo\\obj\\",
+      "outputPath": "C:\\Users\\GP\\Source\\Repos\\Autolote\\AutoloteInfo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3642,8 +3642,8 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\GP\\Desktop\\APIAutoLote\\AutoloteAPI\\Autolote\\Autolote.csproj": {
-              "projectPath": "C:\\Users\\GP\\Desktop\\APIAutoLote\\AutoloteAPI\\Autolote\\Autolote.csproj"
+            "C:\\Users\\GP\\Source\\Repos\\Autolote\\Autolote\\Autolote.csproj": {
+              "projectPath": "C:\\Users\\GP\\Source\\Repos\\Autolote\\Autolote\\Autolote.csproj"
             }
           }
         }

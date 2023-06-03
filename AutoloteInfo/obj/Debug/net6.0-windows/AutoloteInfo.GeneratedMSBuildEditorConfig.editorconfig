@@ -14,4 +14,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AutoloteInfo
-build_property.ProjectDir = C:\Users\GP\Desktop\APIAutoLote\AutoloteAPI\AutoloteInfo\
+build_property.ProjectDir = C:\Users\GP\Source\Repos\Autolote\AutoloteInfo\
