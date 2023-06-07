@@ -46,19 +46,19 @@ namespace Autolote.Controllers
         public async Task<ActionResult> GetRegistrosCredito()
         {
             _logger.LogInformation("Solicitando lista de registro creditos");
-            return Ok(await _db.RegistrosCredito.ToListAsync());
+            return Ok(await _db.RegistrosVentas.ToListAsync());
         }
 
-        [HttpGet]
-        [Route("RegistroContado")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> GetRegistrosContado()
-        {
-            _logger.LogInformation("Solicitando lista de registro contado");
-            return Ok(await _db.RegistrosContado.ToListAsync());
-        }
+        //[HttpGet]
+        //[Route("RegistroContado")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public async Task<ActionResult> GetRegistrosContado()
+        //{
+        //    _logger.LogInformation("Solicitando lista de registro contado");
+        //    return Ok(await _db.RegistrosContado.ToListAsync());
+        //}
 
         [HttpPost]
         [Route("AgregarCliente")]
@@ -70,7 +70,7 @@ namespace Autolote.Controllers
         {
             if (!ModelState.IsValid)
             {
-                _logger.LogError("Nombre no valido");
+                _logger.LogError("No se pudo crear el cliente");
                 return BadRequest();
             }
 
@@ -95,22 +95,37 @@ namespace Autolote.Controllers
             return Ok();
         }
 
-        [HttpPost("InsertarCarro/{Marca}/{Precio}")]
+        [HttpPost]
+        [Route("AgregarCarro")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult PostCarro(string Marca, decimal Precio)
+        public async Task<ActionResult> PostCarro([FromBody] VehiculoDTO vehiculo)
         {
-            if ((Marca == "" || Marca == null) || (Precio == null))
+            if (!ModelState.IsValid)
             {
-                _logger.LogError("Post cancelado");
-                return BadRequest();
+                _logger.LogError("No se puedo crear el vehiculo");
             }
-
-            _db.Vehiculos.Add(new Models.Vehiculo()
+            if(await _db.Vehiculos.FindAsync(vehiculo.Chasis) != null)
             {
-                Marca = Marca,
-                Precio = Precio
+                _logger.LogError("El chasis ya existia, no se creo el vehiculo");
+                ModelState.AddModelError("Chasis Existe", "El Chasis ingresado ya existe en nuestra base de datos!");
+                return BadRequest(ModelState);
+            }
+            if(vehiculo == null)
+            {
+                _logger.LogError("No ingreso los datos requeridos");
+                ModelState.AddModelError("Datos no validos", "Los datos que se ingresaron como parametros no son validos");
+                return BadRequest(ModelState);
+            }
+            _db.Vehiculos.Add(new Vehiculo()
+            {
+                Marca = vehiculo.Marca,
+                Precio = vehiculo.Precio,
+                Estado = vehiculo.Estado,
+                AñoFab = vehiculo.AñoFab,
+                Color = vehiculo.Color,
+                Descripcion = vehiculo.Descripcion
             });
             _db.SaveChanges();
             _logger.LogInformation("Carro creado con exito");
@@ -133,9 +148,9 @@ namespace Autolote.Controllers
                     _logger.LogError("Error en la solicitud");
                     return NotFound();
                 }
-                var registro = new RegistroCredito(cliente, carro);
+                var registro = new RegistroVenta(cliente, carro);
                 registro.CalcularCouta(CantidadDePagos);
-                _db.RegistrosCredito.Add(registro);
+                _db.RegistrosVentas.Add(registro);
                 _db.SaveChanges();
                 _logger.LogInformation("Registro creado con exito");
                 return Ok();

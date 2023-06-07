@@ -9,8 +9,7 @@ namespace Autolote.Data
 
         public DbSet<Vehiculo> Vehiculos { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<RegistroCredito> RegistrosCredito { get; set; }
-        public DbSet<RegistroContado> RegistrosContado { get; set;}
+        public DbSet<RegistroVenta> RegistrosVentas { get; set; }
 
     }
 }

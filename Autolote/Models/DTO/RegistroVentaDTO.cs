@@ -3,18 +3,21 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Autolote.Models.DTO
 {
-    public class RegistroContadoDTO
+    public class RegistroVentaDTO
     {
         public int RegistroId { get; set; }
         [Required]
-
         [ForeignKey("ClienteId")]
         public Cliente? Cliente { get; set; }
         public string? ClienteNombre { get; set; }
-        public int ClienteId { get; set; }
-        [ForeignKey("Chasis")]
+        public string CedulaId { get; set; }
+        [ForeignKey("VehiculoId")]
         public Vehiculo? Carro { get; set; }
-        public string? Chasis { get; set; }
+        public string? VehiculoId { get; set; }
         public decimal? Monto { get; set; }
+        public decimal? Cuota { get; set; }
+        public string Capitalizacion { get; set; }
+        public decimal TasaInteres { get; set; }
+        public int AñosDelContrato { get; set; }
     }
 }
