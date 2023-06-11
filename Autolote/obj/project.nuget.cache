@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "fFaPzOn+XaCIF1AsgWLHVpLFHiHBTdFIIOXtb+d4Qg7qcb9c7AnWuUztmkNWqmSB45tw9PcUMy1x555bmvKPaw==",
+  "dgSpecHash": "Pk8quP2tuF38Teyz8LvJSHRpzR9U5ZzLMx/M/PfSCCegiVUWerkhTBz+eqKmR2FQM3GDTLeN2O2tu49NdHAS5Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\GP\\Desktop\\Autolote\\Autolote\\Autolote.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\GP\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\GP\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\GP\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\GP\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\GP\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
