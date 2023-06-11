@@ -5,7 +5,7 @@
 namespace Autolote.Migrations
 {
     /// <inheritdoc />
-    public partial class DB2 : Migration
+    public partial class DB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

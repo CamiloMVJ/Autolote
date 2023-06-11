@@ -11,7 +11,9 @@ namespace Autolote
             CreateMap<Cliente, ClienteDTO>().ReverseMap();
             CreateMap<RegistroVenta, RegistroVentaDTO>().ReverseMap();
             CreateMap<Vehiculo, VehiculoDTO>().ReverseMap();
-
+            CreateMap<Vehiculo,VehiculoCreateDTO>().ReverseMap();
+            CreateMap<RegistroVenta,RegistroVentaCreateDTO>().ReverseMap();
+            CreateMap<Cliente,ClienteCreateDTO>().ReverseMap();
         }
     }
 }

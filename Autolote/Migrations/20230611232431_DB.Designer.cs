@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Autolote.Migrations
 {
     [DbContext(typeof(AutoloteContext))]
-    [Migration("20230607015012_DB2")]
-    partial class DB2
+    [Migration("20230611232431_DB")]
+    partial class DB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -16,7 +16,6 @@ namespace Autolote.Controllers
         private readonly ILogger<AutoloteController> _logger;
         private readonly IClienteRepository _ClienteRepos;
 
-
         public AutoloteController(ILogger<AutoloteController> logger, IClienteRepository repos, IMapper mapper)
         {
             _ClienteRepos = repos;
@@ -35,7 +34,7 @@ namespace Autolote.Controllers
             var clientes = await _ClienteRepos.GetAll();
             return Ok(_mapper.Map<IEnumerable<ClienteDTO>>(clientes));
         }
-        
+
         [HttpGet("{cedula}", Name ="GetCliente")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -73,7 +72,6 @@ namespace Autolote.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-
         public async Task<ActionResult<ClienteDTO>> PostCliente([FromBody] ClienteDTO cliente)
         {
             if (!ModelState.IsValid)
