@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mSbGEkQZ1HEQQaRgoNSm3lIsKEvW2gnSD53X0fT+dKvwAG45a43CqNFsS5u2KG224q9keE0cifdoQ3sIXALRzQ==",
+  "dgSpecHash": "fFaPzOn+XaCIF1AsgWLHVpLFHiHBTdFIIOXtb+d4Qg7qcb9c7AnWuUztmkNWqmSB45tw9PcUMy1x555bmvKPaw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\GP\\Source\\Repos\\Autolote\\Autolote\\Autolote.csproj",
+  "projectFilePath": "C:\\Users\\GP\\Desktop\\Autolote\\Autolote\\Autolote.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\GP\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\GP\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
