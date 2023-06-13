@@ -1,4 +1,7 @@
+using Autolote;
 using Autolote.Data;
+using Autolote.Repository;
+using Autolote.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +18,11 @@ builder.Services.AddDbContext<AutoloteContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddAutoMapper(typeof(MappingConfig));
+
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IVehiculoRepository,VehiculoRepository>();
+builder.Services.AddScoped<IRegistroRepository,RegistroRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
