@@ -10,7 +10,6 @@ namespace Autolote.Models
 
         public string Chasis { get; set; }
         [Required]
-
         public string Marca { get; set; }
         public decimal Precio { get; set; }
         public string Estado { get; set; }

@@ -95,11 +95,11 @@ namespace Autolote.Controllers
             return Ok();
         }
 
-        [HttpPost("InsertarCarro/{Marca}/{Precio}")]
+        [HttpPost("AgregarVehiculo/{Chasis}/{Marca}/{Precio}/{Estado}/{AñoFab}/{Stock}/{Color}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult PostCarro(string Marca, decimal Precio)
+        public ActionResult PostCarro(string Chasis, string Marca, decimal Precio, string Estado, int AñoFab, int Stock, string Color)
         {
             if ((Marca == "" || Marca == null) || (Precio == null))
             {
@@ -109,11 +109,16 @@ namespace Autolote.Controllers
 
             _db.Vehiculos.Add(new Models.Vehiculo()
             {
+                Chasis = Chasis,
                 Marca = Marca,
-                Precio = Precio
+                Precio = Precio,
+                Estado = Estado,
+                AñoFab = AñoFab,
+                Stock = Stock,
+                Color = Color
             });
             _db.SaveChanges();
-            _logger.LogInformation("Carro creado con exito");
+            _logger.LogInformation("Vehiculo ingresado con exito");
             return Ok();
         }
 
