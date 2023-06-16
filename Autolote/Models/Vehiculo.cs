@@ -3,21 +3,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Autolote.Models
 {
-    public class Carro
+    public class Vehiculo
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
-        public int CarroId { get; set; }
+        public int VehiculoId { get; set; }
         [Required]
-
         public string Marca { get; set; }
+        public string Chasis { get; set; }
         public decimal Precio { get; set; }
-
-        public override string ToString()
-        {
-            return String.Format("Id: {0}\tMarca: {1}\tPrecio: {2}", CarroId, Marca, Precio);
-        }
-
+        public string Estado { get; set; }
+        public int AñoFab { get; set; }
+        public string Color { get; set; }
+        public string Descripcion { get; set; }
     }
 }

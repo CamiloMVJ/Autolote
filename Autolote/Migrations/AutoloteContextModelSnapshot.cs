@@ -22,13 +22,102 @@ namespace Autolote.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Autolote.Models.Carro", b =>
+            modelBuilder.Entity("Autolote.Models.Cliente", b =>
                 {
-                    b.Property<int>("CarroId")
+                    b.Property<string>("CedulaId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Direccion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NombreCliente")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumeroTelfono")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CedulaId");
+
+                    b.ToTable("Clientes");
+                });
+
+            modelBuilder.Entity("Autolote.Models.RegistroVenta", b =>
+                {
+                    b.Property<int>("RegistroId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CarroId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RegistroId"));
+
+                    b.Property<int>("AñosDelContrato")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Capitalizacion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CedulaId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClienteId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ClienteNombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Cuota")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("Monto")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TasaInteres")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("VehiculoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RegistroId");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("VehiculoId");
+
+                    b.ToTable("RegistrosVentas");
+                });
+
+            modelBuilder.Entity("Autolote.Models.Vehiculo", b =>
+                {
+                    b.Property<int>("VehiculoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VehiculoId"));
+
+                    b.Property<int>("AñoFab")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Chasis")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Marca")
                         .IsRequired()
@@ -37,78 +126,22 @@ namespace Autolote.Migrations
                     b.Property<decimal>("Precio")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("CarroId");
+                    b.HasKey("VehiculoId");
 
-                    b.ToTable("Carros");
+                    b.ToTable("Vehiculos");
                 });
 
-            modelBuilder.Entity("Autolote.Models.Cliente", b =>
+            modelBuilder.Entity("Autolote.Models.RegistroVenta", b =>
                 {
-                    b.Property<int>("ClienteId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClienteId"));
-
-                    b.Property<string>("ClienteNombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ClienteId");
-
-                    b.ToTable("Clientes");
-                });
-
-            modelBuilder.Entity("Autolote.Models.Registro", b =>
-                {
-                    b.Property<int>("RegistroId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RegistroId"));
-
-                    b.Property<int?>("CarroId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CarroMarca")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal?>("CarroPrecio")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ClienteNombre")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal?>("Cuota")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("SaldoCancelado")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("SaldoInsoluto")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("RegistroId");
-
-                    b.HasIndex("CarroId");
-
-                    b.HasIndex("ClienteId");
-
-                    b.ToTable("Registros");
-                });
-
-            modelBuilder.Entity("Autolote.Models.Registro", b =>
-                {
-                    b.HasOne("Autolote.Models.Carro", "Carro")
-                        .WithMany()
-                        .HasForeignKey("CarroId");
-
                     b.HasOne("Autolote.Models.Cliente", "Cliente")
                         .WithMany()
                         .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Autolote.Models.Vehiculo", "Carro")
+                        .WithMany()
+                        .HasForeignKey("VehiculoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

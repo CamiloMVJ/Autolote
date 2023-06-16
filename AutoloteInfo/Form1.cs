@@ -24,7 +24,7 @@ namespace AutoloteInfo
                     if (response.IsSuccessStatusCode)
                     {
                         var cars = await response.Content.ReadAsStringAsync();
-                        var result = JsonConvert.DeserializeObject<List<CarroDTO>>(cars);
+                        var result = JsonConvert.DeserializeObject<List<VehiculoDTO>>(cars);
                         dgvStudents.DataSource = result.ToList();
                     }
                     else

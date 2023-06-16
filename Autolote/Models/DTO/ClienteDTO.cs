@@ -4,13 +4,12 @@ namespace Autolote.Models.DTO
 {
     public class ClienteDTO
     {
-        public int ClienteId { get; set; }
+        public string CedulaId{ get; set; }
         [Required]
-        public string ClienteName { get; set;}
-
-        public override string ToString()
-        {
-            return string.Format("Id Cliente: {0}\tNombre: {1}", ClienteId, ClienteName);
-        }
+        public string? NombreCliente { get; set; }
+        public string? NumeroTelfono { get; set; }
+        public string? Direccion { get; set; }
+        public string? Email { get; set; }
+        
     }
 }

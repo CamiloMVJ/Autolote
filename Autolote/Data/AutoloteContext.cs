@@ -7,9 +7,9 @@ namespace Autolote.Data
     {
         public AutoloteContext(DbContextOptions<AutoloteContext> options) : base(options){ }
 
-        public DbSet<Carro> Carros { get; set; }
+        public DbSet<Vehiculo> Vehiculos { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Registro> Registros { get; set; }
+        public DbSet<RegistroVenta> RegistrosVentas { get; set; }
 
     }
 }
