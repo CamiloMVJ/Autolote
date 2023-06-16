@@ -38,7 +38,7 @@
             this.dgvCarros = new System.Windows.Forms.DataGridView();
             this.txtChasis = new System.Windows.Forms.TextBox();
             this.txtColor = new System.Windows.Forms.TextBox();
-            this.txtStock = new System.Windows.Forms.TextBox();
+            this.txtDescripción = new System.Windows.Forms.TextBox();
             this.txtAñoFab = new System.Windows.Forms.TextBox();
             this.txtEstado = new System.Windows.Forms.TextBox();
             this.txtPrecio = new System.Windows.Forms.TextBox();
@@ -46,7 +46,7 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnActualizarVehiculo = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarros)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,9 +73,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 189);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 20);
+            this.label3.Size = new System.Drawing.Size(87, 20);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Stock";
+            this.label3.Text = "Descripción";
             // 
             // label4
             // 
@@ -145,12 +145,12 @@
             this.txtColor.Size = new System.Drawing.Size(125, 27);
             this.txtColor.TabIndex = 13;
             // 
-            // txtStock
+            // txtDescripción
             // 
-            this.txtStock.Location = new System.Drawing.Point(116, 182);
-            this.txtStock.Name = "txtStock";
-            this.txtStock.Size = new System.Drawing.Size(125, 27);
-            this.txtStock.TabIndex = 14;
+            this.txtDescripción.Location = new System.Drawing.Point(116, 186);
+            this.txtDescripción.Name = "txtDescripción";
+            this.txtDescripción.Size = new System.Drawing.Size(432, 27);
+            this.txtDescripción.TabIndex = 14;
             // 
             // txtAñoFab
             // 
@@ -209,21 +209,22 @@
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnEliminar
             // 
-            this.button4.Location = new System.Drawing.Point(587, 207);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(94, 29);
-            this.button4.TabIndex = 22;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnEliminar.Location = new System.Drawing.Point(539, 148);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(150, 29);
+            this.btnEliminar.TabIndex = 22;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // FrmActualizarInventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(883, 592);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnActualizarVehiculo);
             this.Controls.Add(this.btnAgregar);
@@ -231,7 +232,7 @@
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.txtEstado);
             this.Controls.Add(this.txtAñoFab);
-            this.Controls.Add(this.txtStock);
+            this.Controls.Add(this.txtDescripción);
             this.Controls.Add(this.txtColor);
             this.Controls.Add(this.txtChasis);
             this.Controls.Add(this.dgvCarros);
@@ -263,7 +264,7 @@
         private DataGridView dgvCarros;
         private TextBox txtChasis;
         private TextBox txtColor;
-        private TextBox txtStock;
+        private TextBox txtDescripción;
         private TextBox txtAñoFab;
         private TextBox txtEstado;
         private TextBox txtPrecio;
@@ -271,6 +272,6 @@
         private Button btnAgregar;
         private Button btnActualizarVehiculo;
         private Button button3;
-        private Button button4;
+        private Button btnEliminar;
     }
 }

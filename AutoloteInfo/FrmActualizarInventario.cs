@@ -46,7 +46,7 @@ namespace AutoloteInfo
                 Precio = double.Parse(txtPrecio.Text),
                 Estado = txtEstado.Text,
                 AñoFab = int.Parse(txtAñoFab.Text),
-                Stock = int.Parse(txtStock.Text),
+                Descripcion = txtDescripción.Text,
                 Color = txtColor.Text
             };
             using(var vehiculo = new HttpClient())
@@ -73,7 +73,7 @@ namespace AutoloteInfo
         {
             using (var client = new HttpClient())
             {
-                using (var response = await client.GetAsync("https://localhost:7166/api/Autolote/Lista/vehiculo"))
+                using (var response = await client.GetAsync("https://localhost:7166/api/Vehiculo"))
                 {
                     if (response.IsSuccessStatusCode)
                     {
@@ -109,9 +109,14 @@ namespace AutoloteInfo
                 //Comprobamos que la respuesta HTTP se realizó correctamente
                 if (Respuesta.IsSuccessStatusCode)
                 {
-                    var Datos = await Respuesta.Content.
+                    //var Datos = await Respuesta.Content.
                 }
             }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -358,3 +358,5 @@ C:\Users\GP\Desktop\Autolote\Autolote\obj\Debug\net6.0\ref\Autolote.dll
 C:\Users\GP\Desktop\Autolote\Autolote\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\GP\Desktop\Autolote\Autolote\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 >>>>>>> origin/Camilo
+C:\Users\hamir\OneDrive\Documents\Programación II\Autolote\Autolote\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\hamir\OneDrive\Documents\Programación II\Autolote\Autolote\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
