@@ -9,7 +9,7 @@ namespace Autolote.Models.DTO
         public int VehiculoId { get; set; }
         [Required]
         public string Marca { get; set; }
-        public decimal Precio { get; set; }
+        public double Precio { get; set; }
         public string Estado { get; set; }
         public int AñoFab { get; set; }
         public string Color { get; set; }
