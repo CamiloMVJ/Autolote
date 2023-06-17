@@ -22,7 +22,6 @@ namespace AutoloteInfo
         }
         private void FrmActualizarInventario_Load(object sender, EventArgs e)
         {
-            GetAllCars();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -116,7 +115,7 @@ namespace AutoloteInfo
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-
+            GetAllCars();
         }
     }
 }
