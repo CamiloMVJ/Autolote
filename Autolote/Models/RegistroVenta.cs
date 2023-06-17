@@ -12,7 +12,7 @@ namespace Autolote.Models
         public int RegistroId { get; set; }
         [Required]
 
-        [ForeignKey("ClienteId")]
+        [ForeignKey("CedulaId")]
         public Cliente? Cliente { get; set; }
         public string? ClienteNombre { get; set; }
         public string CedulaId { get; set; }

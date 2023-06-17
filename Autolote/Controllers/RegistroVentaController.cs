@@ -25,20 +25,20 @@ namespace Autolote.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<ClienteDTO>>> GetAllRegistros()
+        public async Task<ActionResult<IEnumerable<RegistroVentaDTO>>> GetAllRegistros()
         {
             _logger.LogInformation("Solicitando lista de registros");
             var registros = await _RegistroRepos.GetAll();
-            return Ok(_mapper.Map<IEnumerable<ClienteDTO>>(registros));
+            return Ok(_mapper.Map<IEnumerable<RegistroVentaDTO>>(registros));
         }
 
-        [HttpGet("{cedula}", Name = "GetRegistro")]
+        [HttpGet("{id:int}", Name = "GetRegistro")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<RegistroVentaDTO>> GetRegistro(int Id)
         {
-            var registro = await _RegistroRepos.Get(s => s.RegistroId == Id);
+            var registro = await _RegistroRepos.Get(s => s.RegistroId == Id);   
             return Ok(_mapper.Map<RegistroVenta>(registro));
         }
 
@@ -46,18 +46,18 @@ namespace Autolote.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<RegistroVentaDTO>> PostRegistro([FromBody] RegistroVentaDTO registro)
+        public async Task<ActionResult<RegistroVentaDTO>> PostRegistro([FromBody] RegistroVentaCreateDTO registro)
         {
             if (!ModelState.IsValid)
             {
                 _logger.LogError("No se pudo crear el registro");
                 return BadRequest();
             }
-            if (await _RegistroRepos.Get(s => s.RegistroId == registro.RegistroId) != null)
-            {
-                ModelState.AddModelError("Id Existe", "!El registro ya existe en nuesta base de datos¡");
-                return BadRequest(ModelState);
-            }
+            //if (await _RegistroRepos.Get(s => s.RegistroId == registro.RegistroId) != null)
+            //{
+            //    ModelState.AddModelError("Id Existe", "!El registro ya existe en nuesta base de datos¡");
+            //    return BadRequest(ModelState);
+            //}
             if (registro == null)
                 return BadRequest(registro);
 
@@ -87,21 +87,21 @@ namespace Autolote.Controllers
             return NoContent();
         }
 
-        //[HttpPut(Name = "ActualizarRegistro")]
-        //[ProducesResponseType(StatusCodes.Status204NoContent)]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //public async Task<ActionResult> UpdateRegistro(int id, [FromBody] ClienteUpdateDTO cliente)
-        //{
-        //    if (id == null || id == "")
-        //        return BadRequest(id);
-        //    if (cliente == null)
-        //        return BadRequest(cliente);
-        //    if (cliente.CedulaId != id)
-        //        return BadRequest();
+        [HttpPut(Name = "ActualizarRegistro")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> UpdateRegistro(int id, [FromBody] RegistroVentaUpdateDTO registro)
+        {
+            if (id == 0)
+                return BadRequest(id);
+            if (registro == null)
+                return BadRequest(registro);
+            if (registro.RegistroId != id)
+                return BadRequest();
 
-        //    var modelo = _mapper.Map<Cliente>(cliente);
-        //    await _RegistroRepos.UpdateCliente(modelo);
-        //    return NoContent();
-        //}
+            var modelo = _mapper.Map<RegistroVenta>(registro);
+            await _RegistroRepos.UpdateRegistro(modelo);
+            return NoContent();
+        }
     }
 }
