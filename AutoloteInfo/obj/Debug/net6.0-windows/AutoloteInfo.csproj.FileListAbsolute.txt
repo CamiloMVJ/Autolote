@@ -214,3 +214,5 @@ C:\Users\GP\Desktop\Autolote\AutoloteInfo\bin\Debug\net6.0-windows\AutoMapper.Ex
 >>>>>>> origin/Camilo
 C:\Users\hamir\OneDrive\Documents\Programación II\Autolote\AutoloteInfo\bin\Debug\net6.0-windows\AutoMapper.dll
 C:\Users\hamir\OneDrive\Documents\Programación II\Autolote\AutoloteInfo\bin\Debug\net6.0-windows\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\GP\Desktop\Autolote\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.FrmActualizarInventario.resources
+C:\Users\GP\Desktop\Autolote\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.frmLogin.resources
