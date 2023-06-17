@@ -16,7 +16,8 @@ namespace AutoloteInfo
 {
     public partial class FrmActualizarInventario : Form
     {
-        private static string NumeroChasis;
+        //Variable que obtiene el ID del vehículo para luego obtenr el vehículo con este
+        private static int VehiculoID;
         public FrmActualizarInventario()
         {
             InitializeComponent();
@@ -26,20 +27,28 @@ namespace AutoloteInfo
 
         }
 
+        //Botones
         private void button6_Click(object sender, EventArgs e)
         {
 
         }
-
-        
-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             AñadirVehiculo();
         }
+        private void btnActualizarVehiculo_Click(object sender, EventArgs e)
+        {
 
+        }
+        private void btnMostrarInventario_Click(object sender, EventArgs e)
+        {
+            GetAllCars();
+        }
+
+        //Métodos
         private async void AñadirVehiculo()
         {
+            //Creamos un objeto de la clase "VehiculoDTO" con los parametro indicado en el textbox correspondiente
             VehiculoDTO Vehiculo = new VehiculoDTO()
             {
                 Chasis = txtChasis.Text,
@@ -62,11 +71,6 @@ namespace AutoloteInfo
                     MessageBox.Show($"Ha ocurrido un error: {Respuesta.Content.ReadAsStringAsync().Result.ToString()}");
 
             }
-        }
-
-        private void btnActualizarVehiculo_Click(object sender, EventArgs e)
-        {
-
         }
 
         //Obtenemos los vehículos para visualizarlo en el datagridview
@@ -96,18 +100,19 @@ namespace AutoloteInfo
             {
                 if (row.Index == e.RowIndex)
                 {
-                    NumeroChasis = row.Cells[7].Value.ToString();
-                    ObtenerVehiculoxChasis(NumeroChasis);
+                    //Obtenemo el valor de la primer celda
+                    VehiculoID = int.Parse(row.Cells[0].Value.ToString());
+                    //Se preocede con el método con el que se obtendrá el vehículo por medio de su ID
+                    ObtenerVehiculoxChasis(VehiculoID);
                 }
             }
         }
-
-        private async void ObtenerVehiculoxChasis(string? numeroChasis)
+        private async void ObtenerVehiculoxChasis(int? idVehiculo)
         {
             using (var client =new HttpClient())
             {
-                var Respuesta = await client.GetAsync(string.Format("{0}/{1}/{2}/{3}/{4}/{5}/{6}", "https://localhost:7166/api/Vehiculo", numeroChasis));
-                //Comprobamos que la respuesta HTTP se realizó correctamente
+                var Respuesta = await client.GetAsync(String.Format("{0}/{1}", "https://localhost:7166/api/Vehiculo", idVehiculo));
+                //Comprobamos que la solicitud HTTP se haya realizado correctamente
                 if (Respuesta.IsSuccessStatusCode)
                 {
                     //El método "ReadAsStringAsync()" serializa el contenido HTTP en una cadena como una operación asincrónica
@@ -121,15 +126,16 @@ namespace AutoloteInfo
                     txtColor.Text = vehiculo.Color;
                     txtPrecio.Text = vehiculo.Precio.ToString();
                     txtDescripción.Text = vehiculo.Descripcion.ToString();
+                    txtEstado.Text = vehiculo.Estado;
                 }
                 else
                     MessageBox.Show("No se han podido obtener los dato del vehículo: {0}", Respuesta.StatusCode.ToString());
             }
         }
 
-        private void btnMostrarInventario_Click(object sender, EventArgs e)
+        private void btnEliminar_Click(object sender, EventArgs e)
         {
-            GetAllCars();
+
         }
     }
 }
