@@ -22,7 +22,6 @@ namespace AutoloteInfo
         }
         private void FrmActualizarInventario_Load(object sender, EventArgs e)
         {
-            GetAllCars();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -30,7 +29,7 @@ namespace AutoloteInfo
 
         }
 
-        
+
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -46,10 +45,10 @@ namespace AutoloteInfo
                 Precio = double.Parse(txtPrecio.Text),
                 Estado = txtEstado.Text,
                 AñoFab = int.Parse(txtAñoFab.Text),
-                Stock = int.Parse(txtStock.Text),
+                //Stock = int.Parse(txtStock.Text),
                 Color = txtColor.Text
             };
-            using(var vehiculo = new HttpClient())
+            using (var vehiculo = new HttpClient())
             {
                 var VehiculoSerializado = JsonConvert.SerializeObject(Vehiculo);
                 var Datos = new StringContent(VehiculoSerializado, Encoding.UTF8, "application/json");
@@ -57,7 +56,8 @@ namespace AutoloteInfo
                 if (Respuesta.IsSuccessStatusCode)
                 {
                     MessageBox.Show("El vehículo ha sido agregado correctamente");
-                }else
+                }
+                else
                     MessageBox.Show($"Ha ocurrido un error: {Respuesta.Content.ReadAsStringAsync().Result.ToString()}");
 
             }
@@ -65,7 +65,7 @@ namespace AutoloteInfo
 
         private void btnActualizarVehiculo_Click(object sender, EventArgs e)
         {
-
+            GetAllCars();
         }
 
         //Obtenemos los vehículos para visualizarlo en el datagridview
@@ -73,7 +73,7 @@ namespace AutoloteInfo
         {
             using (var client = new HttpClient())
             {
-                using (var response = await client.GetAsync("https://localhost:7166/api/Autolote/Lista/vehiculo"))
+                using (var response = await client.GetAsync("https://localhost:7166/api/Vehiculo"))
                 {
                     if (response.IsSuccessStatusCode)
                     {
@@ -103,13 +103,13 @@ namespace AutoloteInfo
 
         private async void ObtenerVehiculoxChasis(string? numeroChasis)
         {
-            using (var client =new HttpClient())
+            using (var client = new HttpClient())
             {
                 var Respuesta = await client.GetAsync(string.Format("{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}", "", numeroChasis));
                 //Comprobamos que la respuesta HTTP se realizó correctamente
                 if (Respuesta.IsSuccessStatusCode)
                 {
-                    var Datos = await Respuesta.Content.
+                    //var Datos = await Respuesta.Content.
                 }
             }
         }
