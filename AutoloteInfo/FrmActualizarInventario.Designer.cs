@@ -47,6 +47,7 @@
             this.btnActualizarVehiculo = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnMostrarInventario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarros)).BeginInit();
             this.SuspendLayout();
             // 
@@ -217,13 +218,23 @@
             this.btnEliminar.TabIndex = 22;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnMostrarInventario
+            // 
+            this.btnMostrarInventario.Location = new System.Drawing.Point(12, 285);
+            this.btnMostrarInventario.Name = "btnMostrarInventario";
+            this.btnMostrarInventario.Size = new System.Drawing.Size(140, 29);
+            this.btnMostrarInventario.TabIndex = 23;
+            this.btnMostrarInventario.Text = "Mostrar Inventario";
+            this.btnMostrarInventario.UseVisualStyleBackColor = true;
+            this.btnMostrarInventario.Click += new System.EventHandler(this.btnMostrarInventario_Click);
             // 
             // FrmActualizarInventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(883, 592);
+            this.Controls.Add(this.btnMostrarInventario);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnActualizarVehiculo);
@@ -273,5 +284,6 @@
         private Button btnActualizarVehiculo;
         private Button button3;
         private Button btnEliminar;
+        private Button btnMostrarInventario;
     }
 }

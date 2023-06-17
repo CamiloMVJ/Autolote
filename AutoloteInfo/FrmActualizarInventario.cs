@@ -1,4 +1,5 @@
-﻿using Autolote.Models.DTO;
+﻿using Autolote.Models;
+using Autolote.Models.DTO;
 using Azure;
 using Newtonsoft.Json;
 using System;
@@ -22,6 +23,7 @@ namespace AutoloteInfo
         }
         private void FrmActualizarInventario_Load(object sender, EventArgs e)
         {
+
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -52,7 +54,7 @@ namespace AutoloteInfo
             {
                 var VehiculoSerializado = JsonConvert.SerializeObject(Vehiculo);
                 var Datos = new StringContent(VehiculoSerializado, Encoding.UTF8, "application/json");
-                var Respuesta = await vehiculo.PostAsync("https://localhost:7166/api/Autolote/AgregarVehiculo", Datos);
+                var Respuesta = await vehiculo.PostAsync("https://localhost:7166/api/Vehiculo\r\n", Datos);
                 if (Respuesta.IsSuccessStatusCode)
                 {
                     MessageBox.Show("El vehículo ha sido agregado correctamente");
@@ -94,7 +96,7 @@ namespace AutoloteInfo
             {
                 if (row.Index == e.RowIndex)
                 {
-                    NumeroChasis = row.Cells[0].Value.ToString();
+                    NumeroChasis = row.Cells[7].Value.ToString();
                     ObtenerVehiculoxChasis(NumeroChasis);
                 }
             }
@@ -104,16 +106,28 @@ namespace AutoloteInfo
         {
             using (var client =new HttpClient())
             {
-                var Respuesta = await client.GetAsync(string.Format("{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}", "", numeroChasis));
+                var Respuesta = await client.GetAsync(string.Format("{0}/{1}/{2}/{3}/{4}/{5}/{6}", "https://localhost:7166/api/Vehiculo", numeroChasis));
                 //Comprobamos que la respuesta HTTP se realizó correctamente
                 if (Respuesta.IsSuccessStatusCode)
                 {
-                    //var Datos = await Respuesta.Content.
+                    //El método "ReadAsStringAsync()" serializa el contenido HTTP en una cadena como una operación asincrónica
+                    var Datos = await Respuesta.Content.ReadAsStringAsync();
+                    //Se deserializa el contenido HTTP como un objeto de la clase "Vehiculo"
+                    Vehiculo vehiculo = JsonConvert.DeserializeObject<Vehiculo>(Datos);
+                    //Se reflejan los valores en cada textBox
+                    txtChasis.Text = vehiculo.Chasis;
+                    txtMarca.Text = vehiculo.Marca;
+                    txtAñoFab.Text = vehiculo.AñoFab.ToString();
+                    txtColor.Text = vehiculo.Color;
+                    txtPrecio.Text = vehiculo.Precio.ToString();
+                    txtDescripción.Text = vehiculo.Descripcion.ToString();
                 }
+                else
+                    MessageBox.Show("No se han podido obtener los dato del vehículo: {0}", Respuesta.StatusCode.ToString());
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void btnMostrarInventario_Click(object sender, EventArgs e)
         {
             GetAllCars();
         }
