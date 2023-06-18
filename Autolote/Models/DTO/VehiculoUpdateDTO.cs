@@ -1,21 +1,24 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Autolote.Models
+namespace Autolote.Models.DTO
 {
-    public class Vehiculo
+    public class VehiculoUpdateDTO
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
+        [Required]
         public int VehiculoId { get; set; }
         [Required]
         public string Marca { get; set; }
-        public string Chasis { get; set; }
+        [Required]
         public decimal Precio { get; set; }
+        [Required]
         public string Estado { get; set; }
+        [Required]
         public int AñoFab { get; set; }
+        [Required]
         public string Color { get; set; }
+        [Required]
         public string Descripcion { get; set; }
+        [Required]
+        public string Chasis { get; set; }
     }
 }

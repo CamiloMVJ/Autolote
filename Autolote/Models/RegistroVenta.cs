@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Autolote.Models
 {
-    public class RegistroCredito
+    public class RegistroVenta
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -12,27 +12,27 @@ namespace Autolote.Models
         public int RegistroId { get; set; }
         [Required]
 
-        [ForeignKey("ClienteId")]
+        [ForeignKey("CedulaId")]
         public Cliente? Cliente { get; set; }
         public string? ClienteNombre { get; set; }
         public string CedulaId { get; set; }
-        [ForeignKey("Chasis")]
+        [ForeignKey("VehiculoId")]
         public Vehiculo? Carro { get; set; }
-        public string? Chasis { get; set; }
+        public int VehiculoId { get; set; }
         public decimal? Monto { get; set; }
         public decimal? Cuota { get; set; }
         public string Capitalizacion { get; set; }
         public decimal TasaInteres { get; set; }
         public int AñosDelContrato { get; set; }
 
-        public RegistroCredito() { }
-        public RegistroCredito(Cliente cliente, Vehiculo vehiculo) 
+        public RegistroVenta() { }
+        public RegistroVenta(Cliente cliente, Vehiculo vehiculo) 
         {
             Cliente = cliente;
             ClienteNombre = cliente.NombreCliente;
             CedulaId = cliente.CedulaId;
             Carro = vehiculo;
-            Chasis = vehiculo.Chasis;
+            VehiculoId = vehiculo.VehiculoId;
             Monto = vehiculo.Precio;
         }
 
