@@ -8,8 +8,11 @@ namespace Autolote.Models.DTO
         public string CedulaId { get; set; }
         [Required]
         public string? NombreCliente { get; set; }
+        [Required]
         public string? NumeroTelfono { get; set; }
+        [Required]
         public string? Direccion { get; set; }
+        [Required]
         public string? Email { get; set; }
     }
 }
