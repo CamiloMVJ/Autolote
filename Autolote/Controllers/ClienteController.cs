@@ -45,8 +45,7 @@ namespace Autolote.Controllers
             return Ok(_mapper.Map<Cliente>(cliente));
         }
 
-        [HttpPost]
-        [Route("AgregarCliente")]
+        [HttpPost(Name ="AgregarCliente")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
