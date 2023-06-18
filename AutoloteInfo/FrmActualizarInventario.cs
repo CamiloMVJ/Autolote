@@ -109,7 +109,7 @@ namespace AutoloteInfo
                 //Comprobamos que la respuesta HTTP se realizó correctamente
                 if (Respuesta.IsSuccessStatusCode)
                 {
-                    var Datos = await Respuesta.Content.
+                    //var Datos = await Respuesta.Content.
                 }
             }
         }

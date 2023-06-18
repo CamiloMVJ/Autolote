@@ -138,3 +138,15 @@ C:\Users\hamir\OneDrive\Documents\Programación II\Autolote\AutoloteInfo\obj\Deb
 C:\Users\hamir\OneDrive\Documents\Programación II\Autolote\AutoloteInfo\obj\Debug\net6.0-windows\ref\AutoloteInfo.dll
 C:\Users\hamir\OneDrive\Documents\Programación II\Autolote\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.FrmActualizarInventario.resources
 C:\Users\hamir\OneDrive\Documents\Programación II\Autolote\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.frmLogin.resources
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.csproj.AssemblyReference.cache
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.Form1.resources
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.FrmActualizarInventario.resources
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.frmLogin.resources
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.csproj.GenerateResource.cache
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.AssemblyInfoInputs.cache
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.AssemblyInfo.cs
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.csproj.CoreCompileInputs.cache
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.dll
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\obj\Debug\net6.0-windows\refint\AutoloteInfo.dll
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.pdb
