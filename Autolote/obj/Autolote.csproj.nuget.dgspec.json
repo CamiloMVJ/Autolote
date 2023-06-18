@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\hamir\\OneDrive\\Documents\\Programación II\\AutoloteAPI\\Autolote\\Autolote.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "C:\\Users\\hamir\\OneDrive\\Documents\\Programación II\\AutoloteAPI\\Autolote\\Autolote.csproj",
         "packagesPath": "C:\\Users\\hamir\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\hamir\\OneDrive\\Documents\\Programación II\\AutoloteAPI\\Autolote\\obj\\",
+=======
+    "C:\\Users\\hamir\\OneDrive\\Documents\\Programación II\\Autolote\\Autolote\\Autolote.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\hamir\\OneDrive\\Documents\\Programación II\\Autolote\\Autolote\\Autolote.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\hamir\\OneDrive\\Documents\\Programación II\\Autolote\\Autolote\\Autolote.csproj",
+        "projectName": "Autolote",
+        "projectPath": "C:\\Users\\hamir\\OneDrive\\Documents\\Programación II\\Autolote\\Autolote\\Autolote.csproj",
+        "packagesPath": "C:\\Users\\hamir\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hamir\\OneDrive\\Documents\\Programación II\\Autolote\\Autolote\\obj\\",
+>>>>>>> origin/Henry
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

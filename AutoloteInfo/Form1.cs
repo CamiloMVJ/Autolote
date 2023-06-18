@@ -9,30 +9,48 @@ namespace AutoloteInfo
         {
             InitializeComponent();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
+        
+        private void Form1_Load_1(object sender, EventArgs e)
         {
-            GetAllCars();
+
         }
 
         private async void GetAllCars()
         {
             using (var client = new HttpClient())
             {
-                using (var response = await client.GetAsync("https://localhost:7166/api/Autolote"))
+                using (var response = await client.GetAsync("https://localhost:7166/api/Autolote/Lista/vehiculo"))
                 {
                     if (response.IsSuccessStatusCode)
                     {
                         var cars = await response.Content.ReadAsStringAsync();
-                        var result = JsonConvert.DeserializeObject<List<CarroDTO>>(cars);
-                        dgvStudents.DataSource = result.ToList();
+                        var result = JsonConvert.DeserializeObject<List<VehiculoDTO>>(cars);
+                        dgvCarros.DataSource = result.ToList();
                     }
                     else
                     {
-                        MessageBox.Show($"No se puede obtener la lista de estudiantes: {response.StatusCode}");
+                        MessageBox.Show($"No se ha podido obtener el inventario de carros debido ha: {response.StatusCode}");
                     }
                 }
             }
+        }
+
+        private void dgvStudents_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        
+
+        private void btnVerCarros_Click(object sender, EventArgs e)
+        {
+            GetAllCars();
+        }
+
+        private void btnAñadirCarro_Click(object sender, EventArgs e)
+        {
+            Form FormularioActualizarInventario = new FrmActualizarInventario();
+            FormularioActualizarInventario.Show();
         }
     }
 }
