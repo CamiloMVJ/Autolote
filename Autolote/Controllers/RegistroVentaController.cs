@@ -13,12 +13,16 @@ namespace Autolote.Controllers
         private readonly IMapper _mapper;
         private readonly ILogger<RegistroVentaController> _logger;
         private readonly IRegistroRepository _RegistroRepos;
+        private readonly IClienteRepository _ClienteRepository;
+        private readonly IVehiculoRepository _VehiculoRepository;
 
-        public RegistroVentaController(ILogger<RegistroVentaController> logger, IRegistroRepository repos, IMapper mapper)
+        public RegistroVentaController(ILogger<RegistroVentaController> logger, IRegistroRepository repos, IMapper mapper, IClienteRepository clienteRepository, IVehiculoRepository vehiculoRepository)
         {
             _RegistroRepos = repos;
             _logger = logger;
             _mapper = mapper;
+            _ClienteRepository = clienteRepository;
+            _VehiculoRepository = vehiculoRepository;
         }
 
         [HttpGet(Name = "ListaRegistros")]
@@ -36,9 +40,9 @@ namespace Autolote.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<RegistroVentaDTO>> GetRegistro(int Id)
+        public async Task<ActionResult<RegistroVentaDTO>> GetRegistro(int id)
         {
-            var registro = await _RegistroRepos.Get(s => s.RegistroId == Id);   
+            var registro = await _RegistroRepos.Get(s => s.RegistroId == id);
             return Ok(_mapper.Map<RegistroVenta>(registro));
         }
 
@@ -53,19 +57,23 @@ namespace Autolote.Controllers
                 _logger.LogError("No se pudo crear el registro");
                 return BadRequest();
             }
-            //if (await _RegistroRepos.Get(s => s.RegistroId == registro.RegistroId) != null)
-            //{
-            //    ModelState.AddModelError("Id Existe", "!El registro ya existe en nuesta base de datos¡");
-            //    return BadRequest(ModelState);
-            //}
+            if (registro.VerificarDatos())
+                return BadRequest();
             if (registro == null)
                 return BadRequest(registro);
 
-            RegistroVenta modelo = _mapper.Map<RegistroVenta>(registro);
+            Vehiculo coche = await _VehiculoRepository.Get(s => s.VehiculoId == registro.VehiculoId);
+            Cliente cliente = await _ClienteRepository.Get(s => s.CedulaId == registro.CedulaId);
+            if (coche == null || cliente == null)
+                return BadRequest();
+
+            RegistroVenta modelo = new RegistroVenta(cliente, coche, registro.Capitalizacion, registro.AñosDelContrato);
+            modelo.CalcularCouta();
             await _RegistroRepos.Create(modelo);
 
+            var lista = await _RegistroRepos.GetAll();
             _logger.LogInformation("Registro creado con exito");
-            return CreatedAtRoute("GetRegistro", new { Id = modelo.RegistroId }, modelo);
+            return Ok(lista.Last());
         }
 
         [HttpDelete(Name = "BorarRegistro")]
@@ -99,7 +107,17 @@ namespace Autolote.Controllers
             if (registro.RegistroId != id)
                 return BadRequest();
 
-            var modelo = _mapper.Map<RegistroVenta>(registro);
+            Vehiculo coche = await _VehiculoRepository.Get(s => s.VehiculoId == registro.VehiculoId);
+            Cliente cliente = await _ClienteRepository.Get(s => s.CedulaId == registro.CedulaId);
+            if (coche == null || cliente == null)
+                return BadRequest();
+
+            RegistroVenta modelo = new RegistroVenta(cliente, coche, registro.Capitalizacion, registro.AñosDelContrato);
+            if (modelo.VerificarDatos())
+                return BadRequest();
+            modelo.CalcularCouta();
+            modelo.RegistroId = id;
+
             await _RegistroRepos.UpdateRegistro(modelo);
             return NoContent();
         }

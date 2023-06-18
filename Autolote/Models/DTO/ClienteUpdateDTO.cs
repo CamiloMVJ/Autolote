@@ -9,7 +9,7 @@ namespace Autolote.Models.DTO
         [Required]
         public string? NombreCliente { get; set; }
         [Required]
-        public string? NumeroTelfono { get; set; }
+        public string? NumeroTelefono { get; set; }
         [Required]
         public string? Direccion { get; set; }
         [Required]

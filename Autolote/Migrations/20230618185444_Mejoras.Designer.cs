@@ -4,6 +4,7 @@ using Autolote.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Autolote.Migrations
 {
     [DbContext(typeof(AutoloteContext))]
-    partial class AutoloteContextModelSnapshot : ModelSnapshot
+    [Migration("20230618185444_Mejoras")]
+    partial class Mejoras
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +40,7 @@ namespace Autolote.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NumeroTelefono")
+                    b.Property<string>("NumeroTelfono")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CedulaId");
@@ -71,9 +74,6 @@ namespace Autolote.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("Monto")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SaldoInsoluto")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("TasaInteres")
@@ -117,10 +117,6 @@ namespace Autolote.Migrations
                     b.Property<string>("Estado")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("Imagen")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Marca")
                         .IsRequired()

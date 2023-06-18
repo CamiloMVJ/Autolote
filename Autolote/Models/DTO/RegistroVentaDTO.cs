@@ -8,7 +8,7 @@ namespace Autolote.Models.DTO
         public int RegistroId { get; set; }
         [Required]
         public string? ClienteNombre { get; set; }
-        public string? ClienteId { get; set; }
+        public string? CedulaId { get; set; }
         public string? VehiculoId { get; set; }
         public decimal? Monto { get; set; }
         public decimal? Cuota { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Autolote.Models
 {
@@ -17,5 +18,7 @@ namespace Autolote.Models
         public int AñoFab { get; set; }
         public string Color { get; set; }
         public string Descripcion { get; set; }
+
+        public byte[] Imagen { get; set; }
     }
 }

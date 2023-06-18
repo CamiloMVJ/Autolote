@@ -49,7 +49,7 @@ namespace Autolote.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ClienteDTO>> PostCliente([FromBody] ClienteDTO cliente)
+        public async Task<ActionResult<ClienteDTO>> PostCliente([FromBody] ClienteCreateDTO cliente)
         {
             if (!ModelState.IsValid)
             {
