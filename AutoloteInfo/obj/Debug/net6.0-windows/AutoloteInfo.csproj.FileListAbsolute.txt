@@ -140,3 +140,4 @@ C:\Users\GP\Desktop\Autolote\AutoloteInfo\bin\Debug\net6.0-windows\AutoMapper.dl
 C:\Users\GP\Desktop\Autolote\AutoloteInfo\bin\Debug\net6.0-windows\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\GP\Desktop\Autolote\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.FrmActualizarInventario.resources
 C:\Users\GP\Desktop\Autolote\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.frmLogin.resources
+C:\Users\GP\Desktop\Autolote\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.PruebaConexion.resources
