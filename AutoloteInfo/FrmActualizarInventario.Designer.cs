@@ -45,7 +45,7 @@
             this.txtMarca = new System.Windows.Forms.TextBox();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnActualizarVehiculo = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnMostrarInventario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarros)).BeginInit();
@@ -185,7 +185,7 @@
             // 
             this.btnAgregar.Location = new System.Drawing.Point(539, 10);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(142, 29);
+            this.btnAgregar.Size = new System.Drawing.Size(152, 29);
             this.btnAgregar.TabIndex = 19;
             this.btnAgregar.Text = "Agregar Vehículo";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -195,26 +195,27 @@
             // 
             this.btnActualizarVehiculo.Location = new System.Drawing.Point(539, 78);
             this.btnActualizarVehiculo.Name = "btnActualizarVehiculo";
-            this.btnActualizarVehiculo.Size = new System.Drawing.Size(150, 29);
+            this.btnActualizarVehiculo.Size = new System.Drawing.Size(152, 29);
             this.btnActualizarVehiculo.TabIndex = 20;
             this.btnActualizarVehiculo.Text = "Actualizar Vehiculo";
             this.btnActualizarVehiculo.UseVisualStyleBackColor = true;
             this.btnActualizarVehiculo.Click += new System.EventHandler(this.btnActualizarVehiculo_Click);
             // 
-            // button3
+            // btnLimpiar
             // 
-            this.button3.Location = new System.Drawing.Point(549, 253);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 29);
-            this.button3.TabIndex = 21;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Location = new System.Drawing.Point(539, 241);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(152, 29);
+            this.btnLimpiar.TabIndex = 21;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnEliminar
             // 
             this.btnEliminar.Location = new System.Drawing.Point(539, 148);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(150, 29);
+            this.btnEliminar.Size = new System.Drawing.Size(152, 29);
             this.btnEliminar.TabIndex = 22;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -237,7 +238,7 @@
             this.ClientSize = new System.Drawing.Size(883, 592);
             this.Controls.Add(this.btnMostrarInventario);
             this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnActualizarVehiculo);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.txtMarca);
@@ -283,7 +284,7 @@
         private TextBox txtMarca;
         private Button btnAgregar;
         private Button btnActualizarVehiculo;
-        private Button button3;
+        private Button btnLimpiar;
         private Button btnEliminar;
         private Button btnMostrarInventario;
     }

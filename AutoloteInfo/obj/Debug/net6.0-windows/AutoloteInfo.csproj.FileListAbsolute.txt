@@ -283,3 +283,10 @@ C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\obj\
 C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.pdb
 C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\obj\Debug\net6.0-windows\AutoloteInfo.genruntimeconfig.cache
 C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\obj\Debug\net6.0-windows\ref\AutoloteInfo.dll
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\bin\Debug\net6.0-windows\Humanizer.dll
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyModel.dll
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\bin\Debug\net6.0-windows\Mono.TextTemplating.dll
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\bin\Debug\net6.0-windows\System.Text.Encodings.Web.dll
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\bin\Debug\net6.0-windows\System.Text.Json.dll
+C:\Users\hamir\OneDrive\Documents\Programación II\AutoloteAPI\AutoloteInfo\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll

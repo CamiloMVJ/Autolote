@@ -17,28 +17,37 @@ namespace AutoloteInfo
     public partial class FrmActualizarInventario : Form
     {
         //Variable que obtiene el ID del vehículo para luego obtenr el vehículo con este
-        private static int VehiculoID;
+        private static int VehiculoID = 0;
         public FrmActualizarInventario()
         {
             InitializeComponent();
         }
         private void FrmActualizarInventario_Load(object sender, EventArgs e)
         {
-
+            
         }
-
         //Botones
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             AñadirVehiculo();
         }
         private void btnActualizarVehiculo_Click(object sender, EventArgs e)
         {
-
+            if (VehiculoID != 0)
+                ActualizarVehiculo(VehiculoID);
+            else
+                MessageBox.Show("No se ha elegido el carro a eliminar", "Error", MessageBoxButtons.OK);
+        }
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (VehiculoID != 0)
+                EliminarVehiculo(VehiculoID);
+            else
+                MessageBox.Show("No se ha elegido el carro a actualizar", "Error", MessageBoxButtons.OK);
+        }
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
         }
         private void btnMostrarInventario_Click(object sender, EventArgs e)
         {
@@ -49,47 +58,111 @@ namespace AutoloteInfo
         private async void AñadirVehiculo()
         {
             //Creamos un objeto de la clase "VehiculoDTO" con los parametro indicado en el textbox correspondiente
-            VehiculoDTO Vehiculo = new VehiculoDTO()
+            try
             {
-                Chasis = txtChasis.Text,
-                Marca = txtMarca.Text,
-                Precio = double.Parse(txtPrecio.Text),
-                Estado = txtEstado.Text,
-                AñoFab = int.Parse(txtAñoFab.Text),
-                Descripcion = txtDescripción.Text,
-                Color = txtColor.Text
-            };
-            using(var vehiculo = new HttpClient())
-            {
-                var VehiculoSerializado = JsonConvert.SerializeObject(Vehiculo);
-                var Datos = new StringContent(VehiculoSerializado, Encoding.UTF8, "application/json");
-                var Respuesta = await vehiculo.PostAsync("https://localhost:7166/api/Vehiculo\r\n", Datos);
-                if (Respuesta.IsSuccessStatusCode)
+                VehiculoDTO Vehiculo = new VehiculoDTO()
                 {
-                    MessageBox.Show("El vehículo ha sido agregado correctamente");
-                }else
-                    MessageBox.Show($"Ha ocurrido un error: {Respuesta.Content.ReadAsStringAsync().Result.ToString()}");
+                    Chasis = txtChasis.Text,
+                    Marca = txtMarca.Text,
+                    Precio = double.Parse(txtPrecio.Text),
+                    Estado = txtEstado.Text,
+                    AñoFab = int.Parse(txtAñoFab.Text),
+                    Descripcion = txtDescripción.Text,
+                    Color = txtColor.Text
+                };
+                using (var vehiculo = new HttpClient())
+                {
+                    var VehiculoSerializado = JsonConvert.SerializeObject(vehiculo);
+                    var Datos = new StringContent(VehiculoSerializado, Encoding.UTF8, "application/json");
+                    var Respuesta = await vehiculo.PostAsync("https://localhost:7166/api/Vehiculo\r\n", Datos);
+                    if (Respuesta.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show("El vehículo ha sido agregado correctamente", "!Exito¡", MessageBoxButtons.OK);
+                        GetAllCars();
+                        Limpiar();
+                    }
+                    else
+                        MessageBox.Show($"Ha ocurrido un error: {Respuesta.Content.ReadAsStringAsync().Result.ToString()}");
+                }
+            }
+            catch (FormatException)
+            {
+                    MessageBox.Show("No se han llenado los datos del vehículo", "Error", MessageBoxButtons.OK);
+            }
+        }
+        private async void ActualizarVehiculo(int vehiculoID)
+        {
+            Vehiculo vehiculo = new Vehiculo();
+            vehiculo.Chasis = txtChasis.Text;
+            vehiculo.Marca = txtMarca.Text;
+            vehiculo.Precio = decimal.Parse(txtPrecio.Text);
+            vehiculo.Estado = txtEstado.Text;
+            vehiculo.AñoFab = int.Parse(txtAñoFab.Text);
+            vehiculo.Descripcion = txtDescripción.Text;
+            vehiculo.Color = txtColor.Text;
+
+            using (var client = new HttpClient())
+            {
+                var VehiculoSerializado = JsonConvert.SerializeObject(vehiculo);
+                var VehiculoContenido = new StringContent(VehiculoSerializado, Encoding.UTF8, "application/json");
+                var Respuesta = await client.PutAsync(String.Format("{0}/{1}", "https://localhost:7166/api/Vehiculo", vehiculoID), VehiculoContenido);
+                if (Respuesta.IsSuccessStatusCode)
+                    MessageBox.Show("El vehículo ha sido actualizado", "!Exito¡", MessageBoxButtons.OK);
+                else
+                    MessageBox.Show("No se ha podido actualizar el vehículo correctamente", "!Error¡", MessageBoxButtons.OK);
+            }
+            Limpiar();
+            GetAllCars();
+        }
+        private async void EliminarVehiculo(int vehiculoID)
+            {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7166/api/Vehiculo");
+                var Respuesta = await client.DeleteAsync(String.Format("{0}/{1}",
+                    "https://localhost:7166/api/Vehiculo", vehiculoID));
+                if (Respuesta.IsSuccessStatusCode)
+                    MessageBox.Show("El vehículo se ha eliminado correctamente", "!Exito¡", MessageBoxButtons.OK);
+                else
+                    MessageBox.Show("No se ha podido eliminar el vehículo correctamente", "!Error¡", MessageBoxButtons.OK);
 
             }
         }
-
+        private void Limpiar()
+        {
+            foreach (Control Controles in this.Controls)
+            {
+                if(Controles is TextBox)
+                {
+                    Controles.Text = "";
+                }
+            }
+            VehiculoID = 0;
+        }
         //Obtenemos los vehículos para visualizarlo en el datagridview
         private async void GetAllCars()
         {
             using (var client = new HttpClient())
             {
-                using (var response = await client.GetAsync("https://localhost:7166/api/Vehiculo"))
+                try
                 {
-                    if (response.IsSuccessStatusCode)
+                    using (var response = await client.GetAsync("https://localhost:7166/api/Vehiculo"))
                     {
-                        var cars = await response.Content.ReadAsStringAsync();
-                        var result = JsonConvert.DeserializeObject<List<VehiculoDTO>>(cars);
-                        dgvCarros.DataSource = result.ToList();
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var cars = await response.Content.ReadAsStringAsync();
+                            var result = JsonConvert.DeserializeObject<List<VehiculoDTO>>(cars);
+                            dgvCarros.DataSource = result.ToList();
+                        }
+                        else
+                        {
+                            MessageBox.Show($"No se ha podido obtener el inventario de carros debido ha: {response.StatusCode}");
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show($"No se ha podido obtener el inventario de carros debido ha: {response.StatusCode}");
-                    }
+                }
+                catch (System.Net.Http.HttpRequestException)
+                {
+                    MessageBox.Show("Aún no se ha establecido la conexión con la API", "!Error¡", MessageBoxButtons.OK);
                 }
             }
         }
@@ -131,11 +204,6 @@ namespace AutoloteInfo
                 else
                     MessageBox.Show("No se han podido obtener los dato del vehículo: {0}", Respuesta.StatusCode.ToString());
             }
-        }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
