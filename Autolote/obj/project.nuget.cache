@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vQSHZjRLyDCdlWlOLOa0EfX/jvLDZrvJnX7xW/Yf2EXSKIkUO8qGYRxj3Bx/BJw53sxrih7LuqWwHOYFtML5zw==",
+  "dgSpecHash": "RSDT0gB15bIgk3I8m/Wgj/NsSiOVEDD/AGZJ8L0zIDNUhZdvE3aqklczZBGPfoq2LN5SAf4aK0iBPHoPJ5jKwQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hamir\\OneDrive\\Documents\\Programaci�n II\\AutoloteAPI\\Autolote\\Autolote.csproj",
+  "projectFilePath": "C:\\Users\\hamir\\OneDrive\\Documents\\Programación II\\AutoloteAPI\\Autolote\\Autolote.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hamir\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\hamir\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

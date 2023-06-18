@@ -70,11 +70,11 @@ namespace AutoloteInfo
                     Descripcion = txtDescripción.Text,
                     Color = txtColor.Text
                 };
-                using (var vehiculo = new HttpClient())
+                using (var cliente = new HttpClient())
                 {
-                    var VehiculoSerializado = JsonConvert.SerializeObject(vehiculo);
+                    var VehiculoSerializado = JsonConvert.SerializeObject(Vehiculo);
                     var Datos = new StringContent(VehiculoSerializado, Encoding.UTF8, "application/json");
-                    var Respuesta = await vehiculo.PostAsync("https://localhost:7166/api/Vehiculo\r\n", Datos);
+                    var Respuesta = await cliente.PostAsync("https://localhost:7166/api/Vehiculo", Datos);
                     if (Respuesta.IsSuccessStatusCode)
                     {
                         MessageBox.Show("El vehículo ha sido agregado correctamente", "!Exito¡", MessageBoxButtons.OK);
@@ -115,14 +115,19 @@ namespace AutoloteInfo
             GetAllCars();
         }
         private async void EliminarVehiculo(int vehiculoID)
-            {
+        {
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:7166/api/Vehiculo");
-                var Respuesta = await client.DeleteAsync(String.Format("{0}/{1}",
-                    "https://localhost:7166/api/Vehiculo", vehiculoID));
+                string VariablePrueba = String.Format("{0}={1}",
+                    "https://localhost:7166/api/Vehiculo?id", vehiculoID);
+                var Respuesta = await client.DeleteAsync(VariablePrueba);
                 if (Respuesta.IsSuccessStatusCode)
+                {
                     MessageBox.Show("El vehículo se ha eliminado correctamente", "!Exito¡", MessageBoxButtons.OK);
+                    Limpiar();
+                    GetAllCars();
+                }
                 else
                     MessageBox.Show("No se ha podido eliminar el vehículo correctamente", "!Error¡", MessageBoxButtons.OK);
 
